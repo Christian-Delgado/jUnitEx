@@ -13,14 +13,14 @@ pipeline {
 
         stage('Ejecutar tests') {
             steps {
-                sh './venv/bin/pytest'
+                sh './venv/bin/pytest --junitxml=test-results.xml'
             }
         }
     }
 
     post {
         always {
-            junit '**/test-results.xml' // si se generan resultados en XML
+            junit 'test-results.xml' // si se generan resultados en XML
         }
     }
 }
